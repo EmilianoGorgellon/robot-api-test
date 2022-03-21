@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.3 (Python 3.10.3 on win32)" generated="20220320 22:14:55.942" rpa="false" schemaversion="2">
+<suite id="s1" name="Apis" source="C:\Users\Gorgellon\Desktop\Github Emiliano\PYTHON-TELE\practica-apis\apis.robot">
+<test id="s1-t1" name="GET">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>get_data</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220320 22:14:56.314" level="INFO">Creating Session using : alias=get_data, url=http://thetestingworldapi.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220320 22:14:56.314" endtime="20220320 22:14:56.315"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>get_data</arg>
+<arg>api/studentsDetails/1099139</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20220320 22:14:57.130" level="INFO">GET Request : url=http://thetestingworldapi.com/api/studentsDetails/1099139 
+ path_url=/api/studentsDetails/1099139 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220320 22:14:57.130" level="INFO">GET Response : url=http://thetestingworldapi.com/api/studentsDetails/1099139 
+ status=200, reason=OK 
+ headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Content-Type': 'application/json; charset=utf-8', 'Expires': '-1', 'Server': 'Microsoft-IIS/8.5', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'X-Powered-By-Plesk': 'PleskWin', 'Date': 'Mon, 21 Mar 2022 01:14:57 GMT', 'Content-Length': '132'} 
+ body={"status":"true","data":{"id":1099139,"first_name":"Roman","middle_name":"segundo","last_name":"Tortolano","date_of_birth":"18/05"}} 
+ </msg>
+<msg timestamp="20220320 22:14:57.130" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220320 22:14:56.315" endtime="20220320 22:14:57.131"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220320 22:14:57.131" endtime="20220320 22:14:57.133"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220320 22:14:57.134" level="INFO">${status_code} = 200</msg>
+<status status="PASS" starttime="20220320 22:14:57.133" endtime="20220320 22:14:57.134"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220320 22:14:57.135" endtime="20220320 22:14:57.135"/>
+</kw>
+<status status="PASS" starttime="20220320 22:14:56.313" endtime="20220320 22:14:57.135"/>
+</test>
+<test id="s1-t2" name="POST">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>addData</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220320 22:14:57.138" level="INFO">Creating Session using : alias=addData, url=http://thetestingworldapi.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220320 22:14:57.137" endtime="20220320 22:14:57.138"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>first_name=Emiliano</arg>
+<arg>middle_name=asdsa</arg>
+<arg>last_name=Gorgellon</arg>
+<arg>date_of_birth=18/05</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220320 22:14:57.139" level="INFO">${body} = {'first_name': 'Emiliano', 'middle_name': 'asdsa', 'last_name': 'Gorgellon', 'date_of_birth': '18/05'}</msg>
+<status status="PASS" starttime="20220320 22:14:57.138" endtime="20220320 22:14:57.139"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>addData</arg>
+<arg>api/studentsDetails</arg>
+<arg>${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20220320 22:14:57.904" level="INFO">POST Request : url=http://thetestingworldapi.com/api/studentsDetails 
+ path_url=/api/studentsDetails 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '79', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=first_name=Emiliano&amp;middle_name=asdsa&amp;last_name=Gorgellon&amp;date_of_birth=18%2F05 
+ </msg>
+<msg timestamp="20220320 22:14:57.904" level="INFO">POST Response : url=http://thetestingworldapi.com/api/studentsDetails 
+ status=201, reason=Created 
+ headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Content-Type': 'application/json; charset=utf-8', 'Expires': '-1', 'Location': 'http://thetestingworldapi.com/api/studentsDetails/1099151', 'Server': 'Microsoft-IIS/8.5', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'X-Powered-By-Plesk': 'PleskWin', 'Date': 'Mon, 21 Mar 2022 01:14:58 GMT', 'Content-Length': '108'} 
+ body={"id":1099151,"first_name":"Emiliano","middle_name":"asdsa","last_name":"Gorgellon","date_of_birth":"18/05"} 
+ </msg>
+<msg timestamp="20220320 22:14:57.905" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20220320 22:14:57.139" endtime="20220320 22:14:57.905"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220320 22:14:57.906" endtime="20220320 22:14:57.908"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220320 22:14:57.914" endtime="20220320 22:14:57.916"/>
+</kw>
+<status status="PASS" starttime="20220320 22:14:57.137" endtime="20220320 22:14:57.917"/>
+</test>
+<test id="s1-t3" name="POST ON MY PAGE">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>addDataFromPost</arg>
+<arg>http://localhost:4000/</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220320 22:14:57.919" level="INFO">Creating Session using : alias=addDataFromPost, url=http://localhost:4000/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220320 22:14:57.919" endtime="20220320 22:14:57.919"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>email=emilianogorgellon49@gmail.com</arg>
+<arg>password=emi123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220320 22:14:57.920" level="INFO">${body} = {'email': 'emilianogorgellon49@gmail.com', 'password': 'emi123'}</msg>
+<status status="PASS" starttime="20220320 22:14:57.920" endtime="20220320 22:14:57.920"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>addDataFromPost</arg>
+<arg>api/auth/signin</arg>
+<arg>data=${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20220320 22:14:58.036" level="INFO">POST Request : url=http://localhost:4000/api/auth/signin 
+ path_url=/api/auth/signin 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '53', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=email=emilianogorgellon49%40gmail.com&amp;password=emi123 
+ </msg>
+<msg timestamp="20220320 22:14:58.037" level="INFO">POST Response : url=http://localhost:4000/api/auth/signin 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '357', 'ETag': 'W/"165-ylGNU+wrfK7r9jK5v1md4Vept9M"', 'Date': 'Mon, 21 Mar 2022 01:14:58 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRW1pbGlhbm8iLCJlbWFpbCI6ImVtaWxpYW5vZ29yZ2VsbG9uNDlAZ21haWwuY29tIiwiaW1hZ2UiOiJodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9kdHQ2MGhoMzQvaW1hZ2UvdXBsb2FkL3YxNjQ1Mzk3Nzk0L242bHpyMWl3N2lwbmJ4NGlidmxrLmpwZyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NzgyNTI5OCwiZXhwIjoxNjQ3OTExNjk4fQ.ZdHcGYaypP0MWowbV51rD93w78v12mPmBkcibLAM3jg" 
+ </msg>
+<msg timestamp="20220320 22:14:58.037" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220320 22:14:57.920" endtime="20220320 22:14:58.037"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220320 22:14:58.037" endtime="20220320 22:14:58.038"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220320 22:14:58.038" endtime="20220320 22:14:58.039"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220320 22:14:58.041" level="INFO">${status_code} = 200</msg>
+<status status="PASS" starttime="20220320 22:14:58.040" endtime="20220320 22:14:58.041"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220320 22:14:58.041" endtime="20220320 22:14:58.041"/>
+</kw>
+<status status="PASS" starttime="20220320 22:14:57.918" endtime="20220320 22:14:58.042"/>
+</test>
+<test id="s1-t4" name="PUT">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>updateData</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220320 22:14:58.044" level="INFO">Creating Session using : alias=updateData, url=http://thetestingworldapi.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220320 22:14:58.043" endtime="20220320 22:14:58.044"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>id=1099139</arg>
+<arg>first_name=Roman</arg>
+<arg>middle_name=segundo</arg>
+<arg>last_name=Tortolano</arg>
+<arg>date_of_birth=18/05</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220320 22:14:58.044" level="INFO">${body} = {'id': '1099139', 'first_name': 'Roman', 'middle_name': 'segundo', 'last_name': 'Tortolano', 'date_of_birth': '18/05'}</msg>
+<status status="PASS" starttime="20220320 22:14:58.044" endtime="20220320 22:14:58.044"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>updateData</arg>
+<arg>api/studentsDetails/1099139</arg>
+<arg>data=${body}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20220320 22:14:58.833" level="INFO">PUT Request : url=http://thetestingworldapi.com/api/studentsDetails/1099139 
+ path_url=/api/studentsDetails/1099139 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '89', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=id=1099139&amp;first_name=Roman&amp;middle_name=segundo&amp;last_name=Tortolano&amp;date_of_birth=18%2F05 
+ </msg>
+<msg timestamp="20220320 22:14:58.834" level="INFO">PUT Response : url=http://thetestingworldapi.com/api/studentsDetails/1099139 
+ status=200, reason=OK 
+ headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Content-Type': 'application/json; charset=utf-8', 'Expires': '-1', 'Server': 'Microsoft-IIS/8.5', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'X-Powered-By-Plesk': 'PleskWin', 'Date': 'Mon, 21 Mar 2022 01:14:58 GMT', 'Content-Length': '46'} 
+ body={"status":"true","msg":"update  data success"} 
+ </msg>
+<msg timestamp="20220320 22:14:58.834" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220320 22:14:58.045" endtime="20220320 22:14:58.834"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220320 22:14:58.836" level="INFO">${status_code} = 200</msg>
+<status status="PASS" starttime="20220320 22:14:58.835" endtime="20220320 22:14:58.837"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220320 22:14:58.837" endtime="20220320 22:14:58.838"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220320 22:14:58.838" endtime="20220320 22:14:58.840"/>
+</kw>
+<status status="PASS" starttime="20220320 22:14:58.043" endtime="20220320 22:14:58.846"/>
+</test>
+<test id="s1-t5" name="DELETE">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>deleteDataFromDelete</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220320 22:14:58.850" level="INFO">Creating Session using : alias=deleteDataFromDelete, url=http://thetestingworldapi.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220320 22:14:58.850" endtime="20220320 22:14:58.851"/>
+</kw>
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>deleteDataFromDelete</arg>
+<arg>api/studentsDetails/1099137</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<msg timestamp="20220320 22:14:59.667" level="INFO">DELETE Request : url=http://thetestingworldapi.com/api/studentsDetails/1099137 
+ path_url=/api/studentsDetails/1099137 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20220320 22:14:59.667" level="INFO">DELETE Response : url=http://thetestingworldapi.com/api/studentsDetails/1099137 
+ status=200, reason=OK 
+ headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Content-Type': 'application/json; charset=utf-8', 'Expires': '-1', 'Server': 'Microsoft-IIS/8.5', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'X-Powered-By-Plesk': 'PleskWin', 'Date': 'Mon, 21 Mar 2022 01:15:00 GMT', 'Content-Length': '43'} 
+ body={"status":"false","msg":"record not found"} 
+ </msg>
+<msg timestamp="20220320 22:14:59.667" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220320 22:14:58.851" endtime="20220320 22:14:59.668"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220320 22:14:59.669" level="INFO">${status_code} = 200</msg>
+<status status="PASS" starttime="20220320 22:14:59.668" endtime="20220320 22:14:59.669"/>
+</kw>
+<kw name="Get value from JSON" library="RPA.JSON">
+<var>${status}</var>
+<arg>${response.json()}</arg>
+<arg>status</arg>
+<doc>Get a single value from a JSON serializable object that matches the given expression.</doc>
+<msg timestamp="20220320 22:14:59.671" level="INFO">Get value from JSON with expression: "status"</msg>
+<msg timestamp="20220320 22:14:59.713" level="INFO">${status} = false</msg>
+<status status="PASS" starttime="20220320 22:14:59.670" endtime="20220320 22:14:59.713"/>
+</kw>
+<if>
+<branch type="IF" condition="'${status}'=='true'">
+<kw name="Log To Console" library="BuiltIn">
+<arg>ELIMINO EFECTIVAMENTE</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20220320 22:14:59.714" endtime="20220320 22:14:59.714"/>
+</kw>
+<status status="NOT RUN" starttime="20220320 22:14:59.714" endtime="20220320 22:14:59.714"/>
+</branch>
+<status status="PASS" starttime="20220320 22:14:59.713" endtime="20220320 22:14:59.714"/>
+</if>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220320 22:14:59.714" endtime="20220320 22:14:59.714"/>
+</kw>
+<status status="PASS" starttime="20220320 22:14:58.849" endtime="20220320 22:14:59.714"/>
+</test>
+<status status="PASS" starttime="20220320 22:14:55.944" endtime="20220320 22:14:59.716"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="5" fail="0" skip="0" id="s1" name="Apis">Apis</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
